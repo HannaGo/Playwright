@@ -44,7 +44,7 @@ Then('I should see a success message for the form submission', async () => {
 
 });
 
-Then ('I should be presented with an unsuccessful contact us message', async () => {
+Then('I should be presented with an unsuccessful contact us message', async () => {
     await pageFixture.page.waitForSelector('body');
 
     const bodyElement = await pageFixture.page.locator('body');
@@ -53,4 +53,24 @@ Then ('I should be presented with an unsuccessful contact us message', async () 
     const bodyText = await bodyElement.textContent();
 
     await expect(bodyText).toMatch(/Error: (all fields are required|Invalid email address)/);
+});
+
+//cucumber expressions
+When('I type a specific first name {string}', async (firstName: string) =>{
+    console.log(firstName);
+ 
+});
+
+
+When('I enter a specific last name  {string}', async (lastName: string) =>{
+     console.log(lastName); 
+});
+
+When('I enter a specific email address {string}', async (emailAddress: string) => {
+    console.log(emailAddress);
+});
+
+
+When('I enter a specific message {string} and a number {int} within the comment input field', async (word: string, number: number) =>   {
+    console.log(`${word} ${number}`);
 });
