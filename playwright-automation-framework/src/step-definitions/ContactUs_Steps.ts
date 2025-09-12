@@ -57,20 +57,25 @@ Then('I should be presented with an unsuccessful contact us message', async () =
 
 //cucumber expressions
 When('I type a specific first name {string}', async (firstName: string) =>{
-    console.log(firstName);
+    //console.log(firstName);
+    await pageFixture.page.getByPlaceholder('First Name').fill("firstName");
  
 });
 
 
 When('I enter a specific last name  {string}', async (lastName: string) =>{
-     console.log(lastName); 
+    // console.log(lastName); 
+    await pageFixture.page.getByPlaceholder('Last Name').fill(lastName);
 });
 
 When('I enter a specific email address {string}', async (emailAddress: string) => {
-    console.log(emailAddress);
+    //console.log(emailAddress);
+    await pageFixture.page.getByPlaceholder('Email Address').fill(emailAddress);
 });
 
 
 When('I enter a specific message {string} and a number {int} within the comment input field', async (word: string, number: number) =>   {
-    console.log(`${word} ${number}`);
+    //console.log(`${word} ${number}`);
+    await pageFixture.page.getByPlaceholder('Comments').fill(word + " " + number);
+    //await pageFixture.page.pause();
 });
