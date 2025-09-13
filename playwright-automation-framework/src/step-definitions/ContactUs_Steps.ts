@@ -1,6 +1,7 @@
 import { Given, When, Then } from "@cucumber/cucumber";
 import { pageFixture } from "./hooks/browserContextFixture";
 import { expect } from "@playwright/test";
+import { faker } from '@faker-js/faker';
 
 
 When('I type a first name', async () => {
@@ -56,14 +57,14 @@ Then('I should be presented with an unsuccessful contact us message', async () =
 });
 
 //cucumber expressions
-When('I type a specific first name {string}', async (firstName: string) =>{
+When('I type a specific first name {string}', async (firstName: string) => {
     //console.log(firstName);
     await pageFixture.page.getByPlaceholder('First Name').fill("firstName");
- 
+
 });
 
 
-When('I enter a specific last name  {string}', async (lastName: string) =>{
+When('I enter a specific last name  {string}', async (lastName: string) => {
     // console.log(lastName); 
     await pageFixture.page.getByPlaceholder('Last Name').fill(lastName);
 });
@@ -74,8 +75,36 @@ When('I enter a specific email address {string}', async (emailAddress: string) =
 });
 
 
-When('I enter a specific message {string} and a number {int} within the comment input field', async (word: string, number: number) =>   {
+When('I enter a specific message {string} and a number {int} within the comment input field', async (word: string, number: number) => {
     //console.log(`${word} ${number}`);
     await pageFixture.page.getByPlaceholder('Comments').fill(word + " " + number);
     //await pageFixture.page.pause();
+});
+
+
+///Random data generation using cucumber expressions
+
+
+When('I type a random first name', async () =>  {
+    //Faker code here
+    const randomFirstName = faker.person.firstName();
+    await pageFixture.page.getByPlaceholder('First Name').fill(randomFirstName);
+
+});
+
+
+When('I enter a random last name', async () => {
+    //Faker code here
+    const randomLastName = faker.person.lastName();
+    await pageFixture.page.getByPlaceholder('Last Name').fill(randomLastName);
+
+});
+
+
+
+When('I enter a random email address', async () => {
+    //Faker code here
+    const randomEmail = faker.internet.email();
+    await pageFixture.page.getByPlaceholder('Email Address').fill(randomEmail);
+    await pageFixture.page.pause();
 });
