@@ -11,16 +11,16 @@ Feature: webdriveruniversity.com - Contact Us page
     #     Then I should see a success message for the form submission
 
 
-    # # Scenario: Invalid Contact Us From Submission
-    # #     Given I navigate to webdriveruniversity.com
-    # #     When I click on the Contact Us button
-    # #     And I switch to the new browser tab
-    # #     And I type a first name
-    # #     And I enter a valid last name
-    # #     #And I enter a valid email address
-    # #     And I enter a valid message
-    # #     And I click on the Submit button
-    # #     Then I should be presented with an unsuccessful contact us message
+    # Scenario: Invalid Contact Us From Submission
+    #     Given I navigate to webdriveruniversity.com
+    #     When I click on the Contact Us button
+    #     And I switch to the new browser tab
+    #     And I type a first name
+    #     And I enter a valid last name
+    #     #And I enter a valid email address
+    #     And I enter a valid message
+    #     And I click on the Submit button
+    #     Then I should be presented with an unsuccessful contact us message
 
     # Scenario: Valid Contact Us From Submission - Using Specific Data
     #     Given I navigate to webdriveruniversity.com
@@ -33,13 +33,31 @@ Feature: webdriveruniversity.com - Contact Us page
     #     And I click on the Submit button
     #     Then I should see a success message for the form submission
 
-    Scenario: Valid Contact Us From Submission - Using random data
+    # Scenario: Valid Contact Us From Submission - Using random data
+    #     Given I navigate to webdriveruniversity.com
+    #     When I click on the Contact Us button
+    #     And I switch to the new browser tab
+    #     And I type a random first name
+    #     And I enter a random last name
+    #     And I enter a random email address
+    #     And I enter a valid message
+    #     And I click on the Submit button
+    #     Then I should see a success message for the form submission
+
+
+    Scenario Outline: SValidate Contact Us Page
         Given I navigate to webdriveruniversity.com
         When I click on the Contact Us button
         And I switch to the new browser tab
-        And I type a random first name
-        And I enter a random last name
-        And I enter a random email address
-        And I enter a valid message
+        And I type a first name <firstName> and a last name <lastName>
+        And I enter an email address '<emailAddress>' a comment '<comment>'
         And I click on the Submit button
-        Then I should see a success message for the form submission
+        Then I should be presented with header text '<message>'
+
+        Examples:
+            | firstName | lastName | emailAddress          | comment     | message                     |
+            | John      | Doe      | john.doe@example.com  | Hello World | Thank You for your Message! |
+            | Mia       | Smith    | mia.smith@example.com | Hi there!   | Thank You for your Message! |
+            | Grace     | Hudson   | grace.hudson          | Hi there!   | Invalid email address      |
+
+
