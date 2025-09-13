@@ -85,7 +85,7 @@ When('I enter a specific message {string} and a number {int} within the comment 
 ///Random data generation using cucumber expressions
 
 
-When('I type a random first name', async () =>  {
+When('I type a random first name', async () => {
     //Faker code here
     const randomFirstName = faker.person.firstName();
     await pageFixture.page.getByPlaceholder('First Name').fill(randomFirstName);
@@ -106,5 +106,54 @@ When('I enter a random email address', async () => {
     //Faker code here
     const randomEmail = faker.internet.email();
     await pageFixture.page.getByPlaceholder('Email Address').fill(randomEmail);
-    await pageFixture.page.pause();
+    //await pageFixture.page.pause();
+});
+
+
+//Scenario Outlines
+
+
+When('I type a first name {word} and a last name {word}', async (firstName: string, lastName: string) => {
+    await pageFixture.page.getByPlaceholder('First Name').fill(firstName);
+    await pageFixture.page.getByPlaceholder('Last Name').fill(lastName);
+
+});
+
+
+
+When('I enter an email address {string} a comment {string}', async (email: string, comment: string) => {
+    await pageFixture.page.getByPlaceholder('Email Address').fill(email);
+    await pageFixture.page.getByPlaceholder('Comments').fill(comment);
+    // await pageFixture.page.pause();
+
+});
+
+
+
+Then('I should be presented with header text {string}', async (message: string) => {
+    //h1
+    //body
+    //   //h1 | //body
+    //wait for the target element to be visible
+    await pageFixture.page.waitForSelector("//h1 | //body", {state: 'visible'});
+
+    //get all elements that match the locator
+    const elements = await pageFixture.page.locator("//h1 | //body").elementHandles();
+    
+    let foundElementText = '';
+
+    //loop through the elements
+    for (let element of elements) {
+        //get inner text of each element
+        let text = await element.innerText();
+
+        //if statement to check whether text includes expected string
+        if (text.includes(message)) {
+            foundElementText = text;
+            break; //exit loop once we find a match           
+        }
+    }
+    //perform an assertion to check if we found the expected text
+
+    expect(foundElementText).toContain(message);
 });
