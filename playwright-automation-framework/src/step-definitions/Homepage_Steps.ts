@@ -15,6 +15,13 @@ When('I click on the Contact Us button', async () => {
     await contactUs_Button.click();
 });
 
+//login to a new tab
+When('I click on the Login Portal button', async () => {
+    //await page.pause();
+    const login_Button = await pageFixture.page.getByRole('link', { name: 'LOGIN PORTAL Login Portal' });
+    await login_Button.click();
+});
+
 When('I switch to the new browser tab', async () => {
     await pageFixture.context.waitForEvent('page');
 
@@ -29,4 +36,6 @@ When('I switch to the new browser tab', async () => {
 
     //Ensure the newly assigned tab is also fully maximised
     await pageFixture.page.setViewportSize({ width: 1920, height: 1080 });
+
+    //await pageFixture.page.pause(); 
 });
