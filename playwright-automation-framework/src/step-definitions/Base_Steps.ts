@@ -1,5 +1,5 @@
 import { When, Given } from '@cucumber/cucumber';
-import { pageFixture } from '../step-definitions/hooks/browserContextFixture';
+import { pageFixture } from './hooks/browserContextFixture';
 
 When('I switch to the new browser tab', async () => {
     await pageFixture.context.waitForEvent('page');
