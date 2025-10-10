@@ -13,7 +13,7 @@ Feature: webdriveruniversity.com - Contact Us page
         And I click on the Submit button
         Then I should see a success message for the form submission
 
-
+    @smoke
     Scenario: Invalid Contact Us From Submission
         And I type a first name
         And I enter a valid last name
@@ -49,6 +49,6 @@ Feature: webdriveruniversity.com - Contact Us page
             | firstName | lastName | emailAddress          | comment     | message                     |
             | John      | Doe      | john.doe@example.com  | Hello World | Thank You for your Message! |
             | Mia       | Smith    | mia.smith@example.com | Hi there!   | Thank You for your Message! |
-            | Grace     | Hudson   | grace.hudson          | Hi there!   | Invalid email address      |
+            | Grace     | Hudson   | grace.hudson          | Hi there!   | Invalid email address       |
 
 
