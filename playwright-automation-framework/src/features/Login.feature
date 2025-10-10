@@ -8,7 +8,7 @@ Feature: WebdriverUniversity.com - Login Page
         Given I navigate to the webdriveruniversity login page 
         And I type a username <username>
         And I type a password <password>
-        #And I wait for 2 second
+        And I wait for 2 second
         And I click on the login button
         Then I should see an alert with a text '<expectedAlertText>'
 
