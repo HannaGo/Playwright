@@ -30,5 +30,4 @@ const common = `./src/features/*.feature \
     //Print the constructed command to the console
     console.log(`Running command: ${command}`);
 
-    //comments
     
