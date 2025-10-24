@@ -1,3 +1,4 @@
+@regression @contact-us
 Feature: webdriveruniversity.com - Contact Us page
 
     Background: Preconditions
@@ -37,7 +38,7 @@ Feature: webdriveruniversity.com - Contact Us page
         And I click on the Submit button
         Then I should see a success message for the form submission
 
-
+    @smoke
     Scenario Outline: SValidate Contact Us Page
         And I type a first name <firstName> and a last name <lastName>
         And I enter an email address '<emailAddress>' a comment '<comment>'

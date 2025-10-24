@@ -5,7 +5,8 @@ import { exec } from 'child_process';
 const common = `./src/features/*.feature \
   --require-module ts-node/register \
   --require ./src/step-definitions/**/**/*.ts \
-  --require ./src/utils/cucumber-timeout.ts`;
+  --require ./src/utils/cucumber-timeout.ts \
+  --tags "not @ignore"`;
 
   //Define an interface for the profile object
   //It defines an interface where each key is a string and its value is also a string.
@@ -20,6 +21,7 @@ const common = `./src/features/*.feature \
         regression: `${common} --tags "@regression"`,
         login: `${common} --tags "@login"`,
         contactUs: `${common} --tags "@contact-us"`,
+        exampleTag: `${common} --tags "@example-tag"`,
     }
 
     //Get the third command-line and assign it to the profile
